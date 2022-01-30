@@ -1,0 +1,16 @@
+.leftAlign{
+  margin-left: auto;
+  margin-right: 0;
+  float: left;
+};
+.hzAlign{
+ clear: both;
+  float: left;
+};
+
+.rightAlign{
+  margin-left: 0;
+  margin-right: auto;
+  float: right;
+};
+

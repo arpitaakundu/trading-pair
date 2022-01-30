@@ -1,1 +1,15 @@
-<p>tickers-list works!</p>
+<div class="col-md-12">
+  <mat-grid-list cols="4" rowHeight="100px" gutterSize="4px" >
+    <mat-grid-tile
+
+      *ngFor="let ticker of tickers"  [style.background]="ticker.tilecolor">
+      <div>
+        <div class="hzAlign"> <b>{{ ticker.pair}} </b><br/></div>
+
+          {{ ticker.lastprice }} <br>
+          {{ticker.dailychangerelative}}%
+
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
