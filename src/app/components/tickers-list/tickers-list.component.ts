@@ -35,4 +35,9 @@ export class TickersListComponent implements OnInit {
     })
   }
 
+  public navigateToTickerDetails(item: Ticker) {
+    debugger;
+    console.log(item.pair);
+}
+
 }

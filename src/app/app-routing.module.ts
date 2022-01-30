@@ -4,7 +4,7 @@ import { TickersListComponent } from './components/tickers-list/tickers-list.com
 import { TickersDetailsComponent } from './components/tickers-details/tickers-details.component';
 const routes: Routes = [{ path: '', redirectTo: 'tickers', pathMatch: 'full' },
 { path: 'tickers', component: TickersListComponent },
-{ path: 'tickers/:id', component: TickersDetailsComponent }];
+{ path: 'tickers/:symbol', component: TickersDetailsComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

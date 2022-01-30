@@ -1,8 +1,8 @@
 <div class="col-md-12">
   <mat-grid-list cols="4" rowHeight="100px" gutterSize="4px" >
     <mat-grid-tile
-
-      *ngFor="let ticker of tickers"  [style.background]="ticker.tilecolor">
+      *ngFor="let ticker of tickers"  [style.background]="ticker.tilecolor"
+      (click)="navigateToTickerDetails(ticker)">
       <div>
         <div class="hzAlign"> <b>{{ ticker.pair}} </b><br/></div>
 
