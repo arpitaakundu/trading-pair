@@ -11,7 +11,7 @@ export class Ticker {
   public volume?: number;
   public high?: number;
   public low?: number;
-  public tilecolor:string = 'lightblue';
+  public tilecolor:string = 'lightgreen';
   public pair?:string;
   constructor(symbol:string, dailychangerelative: number,lastprice:number ) {
     //specify your own constructor logic

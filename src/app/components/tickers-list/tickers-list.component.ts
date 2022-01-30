@@ -23,7 +23,7 @@ export class TickersListComponent implements OnInit {
       this.tickers = this.tickers.filter( e => e.symbol?.startsWith("t"));
       this.tickers = this.tickers
                          .map(item => { if(item.dailychangerelative < 0)
-                                          {item.tilecolor = "pink "; }
+                                          {item.tilecolor = "lightcoral"; }
                                         else
                                           {item.tilecolor = "lightgreen";}
                                           item.dailychangerelative = parseFloat((item.dailychangerelative * 100).toFixed(2));
