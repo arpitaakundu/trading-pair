@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 //import {MatGridListModule} from '@angular/material/grid-list';
 import { Ticker } from 'src/app/models/ticker.model';
 import { TickersService } from 'src/app/services/tickers.service';
@@ -10,7 +11,7 @@ import { TickersService } from 'src/app/services/tickers.service';
 export class TickersListComponent implements OnInit {
 
   tickers? : Ticker[];
-  constructor(private tickerService:TickersService) { }
+  constructor(private tickerService:TickersService,private router: Router) { }
 
   ngOnInit(): void {
     this.retriveTickers();
@@ -35,9 +36,10 @@ export class TickersListComponent implements OnInit {
     })
   }
 
-  public navigateToTickerDetails(item: Ticker) {
-    debugger;
-    console.log(item.pair);
-}
+//   public navigateToTickerDetails(item: Ticker) {
+//     debugger;
+//     console.log(item.pair);
+//     this.router.navigate(['/ticker/'+item.symbol]);
+// }
 
 }

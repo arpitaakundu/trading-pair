@@ -8,6 +8,7 @@ const routes: Routes = [{ path: '', redirectTo: 'tickers', pathMatch: 'full' },
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  declarations: []
 })
 export class AppRoutingModule { }

@@ -2,9 +2,11 @@
   <mat-grid-list cols="4" rowHeight="100px" gutterSize="4px" >
     <mat-grid-tile
       *ngFor="let ticker of tickers"  [style.background]="ticker.tilecolor"
-      (click)="navigateToTickerDetails(ticker)">
+      >
       <div>
-        <div class="hzAlign"> <b>{{ ticker.pair}} </b><br/></div>
+        <div class="hzAlign">
+          <a routerLink="/tickers/{{ ticker.symbol }}"> <b>{{ ticker.pair}} </b></a><br/>
+        </div>
 
           {{ ticker.lastprice }} <br>
           {{ticker.dailychangerelative}}%
