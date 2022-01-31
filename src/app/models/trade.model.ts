@@ -1,6 +1,11 @@
 export class Trade {
-  id?:any;
   amount?:number;
   price?:number;
-  timestamp?:Date;
+  time?:string;
+  constructor(amount:number, price: number,timestamp:number ) {
+    //specify your own constructor logic
+    this.amount=amount;
+    this.price = price;
+    this.time = new Date(timestamp).toLocaleTimeString();
+  }
 }

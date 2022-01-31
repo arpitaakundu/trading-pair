@@ -1,1 +1,58 @@
-<p>tickers-details works!</p>
+
+<div class="bglightgray">
+  <table>
+    <tr>
+      <td><b>Open Price (0:00 UTC)</b><br/>
+        {{tickerDetails.openprice}}</td>
+      <td><b>Daily Change(0:00 UTC)</b> <br/>
+       <span [ngStyle]="{ color: tickerDetails.tilecolor}"> {{tickerDetails.dailychange}}({{tickerDetails.dailychangerelative}})%</span>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Top Bid</b><br/>
+        <span style="color:green;">{{tickerDetails.bid}}</span>
+      </td>
+      <td><b>Top Ask</b><br/>
+        <span style="color:red;">{{tickerDetails.ask}}</span>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Last Price</b><br/>
+        {{tickerDetails.lastprice}}
+      </td>
+      <td><b>24hr range</b><br/>
+      {{tickerDetails.low}} - {{tickerDetails.high}}</td>
+    </tr>
+  </table>
+</div>
+<br/>
+<div class="bglightgray">
+  <p>Market Trades</p>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Amount Column -->
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef> Amount </th>
+      <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+    </ng-container>
+
+    <!-- Price Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+
+    <!-- Time Column -->
+    <ng-container matColumnDef="timestamp">
+      <th mat-header-cell *matHeaderCellDef> Time </th>
+      <td mat-cell *matCellDef="let element"> {{element.time}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>

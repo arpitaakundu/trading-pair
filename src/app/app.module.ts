@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTableModule} from '@angular/material/table';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +23,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     HttpClientModule,
     BrowserAnimationsModule,
     MatGridListModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
