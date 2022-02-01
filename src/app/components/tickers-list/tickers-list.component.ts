@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-//import {MatGridListModule} from '@angular/material/grid-list';
 import { Ticker } from 'src/app/models/ticker.model';
 import { TickersService } from 'src/app/services/tickers.service';
 @Component({
@@ -11,7 +9,8 @@ import { TickersService } from 'src/app/services/tickers.service';
 export class TickersListComponent implements OnInit {
 
   tickers? : Ticker[];
-  constructor(private tickerService:TickersService,private router: Router) { }
+  tickerSymbols : string[] = [];
+  constructor(private tickerService:TickersService) { }
 
   ngOnInit(): void {
     this.retriveTickers();
@@ -22,13 +21,17 @@ export class TickersListComponent implements OnInit {
       next: (data)=>{
       this.tickers = data;
       this.tickers = this.tickers.filter( e => e.symbol?.startsWith("t"));
+      this.tickerSymbols = this.tickers.map(element => element.symbol || '');
+      sessionStorage.setItem('tickerSymbols',JSON.stringify(this.tickerSymbols));
       this.tickers = this.tickers
-                         .map(item => { if(item.dailychangerelative < 0)
+                         .map((item,i=0) => { if(item.dailychangerelative < 0)
                                           {item.tilecolor = "lightcoral"; }
                                         else
                                           {item.tilecolor = "lightgreen";}
                                           item.dailychangerelative = parseFloat((item.dailychangerelative * 100).toFixed(2));
                                           item.pair = item.symbol?.substring(1, 4) + "/" + item.symbol?.substring(4);
+                                          item.index = i;
+                                          i++;
                                           return item;
                         });
      },
@@ -36,10 +39,8 @@ export class TickersListComponent implements OnInit {
     })
   }
 
-//   public navigateToTickerDetails(item: Ticker) {
-//     debugger;
-//     console.log(item.pair);
-//     this.router.navigate(['/ticker/'+item.symbol]);
-// }
+  setCurrentIndex(index:number){
+    sessionStorage.setItem('currentIndex',index.toString());
+  }
 
 }

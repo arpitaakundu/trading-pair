@@ -1,4 +1,23 @@
-
+<div>
+    <div >
+      <button mat-fab-min color="primary" (click)="back()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+  </div>
+    <div>
+        <button mat-fab-min color="primary" (click)="pairSwitchTicker('prev')">
+          <mat-icon>skip_previous</mat-icon>
+        </button>
+        <span class="header">{{tickerDetails.pair}}</span>
+        <button mat-fab-min color="primary" (click)="pairSwitchTicker('next')">
+          <mat-icon>skip_next</mat-icon>
+        </button>
+    </div>
+  <br/>
+  <h2>{{tickerDetails.lastprice}}<br>
+    <span [ngStyle]="{ color: tickerDetails.tilecolor}">{{tickerDetails.dailychangerelative}}%</span></h2>
+</div>
+<br>
 <div class="bglightgray">
   <table>
     <tr>
@@ -27,7 +46,7 @@
 </div>
 <br/>
 <div class="bglightgray">
-  <p>Market Trades</p>
+  <p class="caption">Market Trades</p>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.

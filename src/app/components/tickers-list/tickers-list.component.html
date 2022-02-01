@@ -5,7 +5,7 @@
       >
       <div>
         <div class="hzAlign">
-          <a routerLink="/tickers/{{ ticker.symbol }}"> <b>{{ ticker.pair}} </b></a><br/>
+          <a (click)="setCurrentIndex(ticker.index)" routerLink="/tickers/{{ ticker.symbol }}"> <b>{{ ticker.pair}} </b></a><br/>
         </div>
 
           {{ ticker.lastprice }} <br>

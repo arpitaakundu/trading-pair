@@ -5,3 +5,12 @@ table{
 .bglightgray{
   background-color: lightgrey;
 }
+.header{
+  font-size: xx-large;
+  font-weight: bolder;
+  margin: 10px;
+}
+.caption{
+  font-size: medium;
+  margin: 10px;
+}

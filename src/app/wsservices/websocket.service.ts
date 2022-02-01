@@ -1,36 +1,43 @@
-import {Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
+import { environment } from '../../environments/environment';
+import { catchError, tap, map } from 'rxjs/operators';
+import { EMPTY,Subject } from 'rxjs';
+export const WS_ENDPOINT = environment.wsUrl;
 
+@Injectable({
+  providedIn: 'root'
+})
 export class WebSocketService {
+  private socket$!: WebSocketSubject<any>;
+  private messagesSubject$ = new Subject();
+  public messages$ = this.messagesSubject$.pipe();
 
-  ws!: WebSocket;
-  socketIsOpen = 1;
-
-  createObservableSocket(url: string): Observable<any> {
-     this.ws = new WebSocket(url);
-
-    return new Observable(
-       observer => {
-
-        this.ws.onmessage = (event) =>
-          observer.next(event.data);
-
-        this.ws.onerror = (event) => observer.error(event);
-
-        this.ws.onclose = (event) => observer.complete();
-
-        return () =>
-            this.ws.close(1000, "The user disconnected");
-       }
-    );
+  public connect(channel:string,symbol:string): void {
+    if (!this.socket$ || this.socket$.closed) {
+      this.socket$ = this.getNewWebSocket(channel,symbol);
+      const messages = this.socket$.pipe(
+        map(data => {return data;}),
+        tap({
+          error: error => console.log(error),
+        }), catchError(_ => EMPTY));
+      this.messagesSubject$.next(messages);
+    }
   }
 
-  sendMessage(message: string): string {
-    if (this.ws.readyState === this.socketIsOpen) {
-       this.ws.send(message);
-       return `Sent to server ${message}`;
-    } else {
-      return 'Message was not sent - the socket is closed';
-     }
+  private getNewWebSocket(channel:string,symbol:string) {
+    return webSocket({
+      url: WS_ENDPOINT,
+      serializer: msg => JSON.stringify({
+        event: 'subscribe',
+        channel: channel,
+        symbol: symbol
+      }),
+    });
   }
-}
 
+  sendMessage(msg: any) {
+    this.socket$.next(msg);
+  }
+  close() {
+    this.socket$.complete(); }}
